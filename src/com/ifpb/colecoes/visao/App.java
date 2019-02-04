@@ -1,30 +1,27 @@
 package com.ifpb.colecoes.visao;
 
-import com.ifpb.colecoes.modelo.Pessoa;
-
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import com.ifpb.colecoes.enumeration.TipoFicha;
+import com.ifpb.colecoes.modelo.Ficha;
+import com.ifpb.colecoes.modelo.FilaBanco;
 
 public class App {
 
     public static void main(String[] args) {
 
-        Queue<Pessoa> pessoas = new PriorityQueue<>();
+        FilaBanco filaBanco = new FilaBanco();
 
-        pessoas.offer(new Pessoa("111.111.111-01", "João", 20));
-        pessoas.offer(new Pessoa("222.222.222-02", "Maria", 19));
-        pessoas.offer(new Pessoa("333.333.333-03", "Pedro", 20));
-        pessoas.offer(new Pessoa("444.444.444-04","Ana", 18));
-        pessoas.offer(new Pessoa("555.555.555-05", "Joaquim", 20));
+        filaBanco.adicionar(new Ficha(TipoFicha.CONVENCIONAL));
+        filaBanco.adicionar(new Ficha(TipoFicha.PRIORITARIA));
+        filaBanco.adicionar(new Ficha(TipoFicha.CONVENCIONAL));
+        filaBanco.adicionar(new Ficha(TipoFicha.CONVENCIONAL));
+        filaBanco.adicionar(new Ficha(TipoFicha.CONVENCIONAL));
+        filaBanco.adicionar(new Ficha(TipoFicha.PRIORITARIA));
 
-        //Não aceita elementos nulos
-        //pessoas.offer(null);
-
-        while(!pessoas.isEmpty()){
-            System.out.println(pessoas.poll());
-        }
+        Ficha ficha;
+        do{
+            ficha = filaBanco.getProximo();
+            System.out.println(ficha);
+        }while (ficha != null);
 
     }
 
