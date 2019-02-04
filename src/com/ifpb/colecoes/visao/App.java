@@ -1,31 +1,26 @@
 package com.ifpb.colecoes.visao;
 
-import java.util.Stack;
+import com.ifpb.colecoes.controle.CadastroPessoa;
+import com.ifpb.colecoes.modelo.Pessoa;
+
+import java.util.*;
 
 public class App {
 
     public static void main(String[] args) {
 
-        String equacao = "()";
 
-        System.out.println(estaBalanceada(equacao));
+        Set<Pessoa> pessoas = new TreeSet<>(Comparator.comparing(Pessoa::getCpf));
 
-    }
+        pessoas.add(new Pessoa("111.111.111-01", "João",20));
+        pessoas.add(new Pessoa("111.111.111-01", "Maria",19));
+        pessoas.add(new Pessoa("222.222.222-02", "Pedro",17));
+        pessoas.add(new Pessoa("333.333.333-03", "Ana",20));
 
-    public static boolean estaBalanceada(String equacao){
-
-        Stack<String> pilha = new Stack<>();
-
-        for(int i=0; i<equacao.length();i++){
-            char caracter = equacao.charAt(i);
-            if(caracter == '(') pilha.push("A");
-            else if(caracter == ')'){
-                if(pilha.empty()) return false;
-                else pilha.pop();
-            }
+        for(Pessoa p : pessoas){
+            System.out.println(p);
         }
 
-        return pilha.empty();
 
     }
 

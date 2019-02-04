@@ -2,23 +2,28 @@ package com.ifpb.colecoes.controle;
 
 import com.ifpb.colecoes.modelo.Pessoa;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CadastroPessoa {
 
-    List<Pessoa> pessoas;
+    Set<Pessoa> pessoas;
 
     public CadastroPessoa(){
-        pessoas = new ArrayList<>();
+        pessoas = new HashSet<>();
     }
 
     public boolean salvar(Pessoa p){
         return pessoas.add(p);
     }
 
+    public boolean contains(Pessoa p){
+        return pessoas.contains(p);
+    }
+
     public Pessoa[] getPessoas(){
-        return (Pessoa[]) pessoas.toArray();
+        Pessoa pessoasA[] = new Pessoa[pessoas.size()];
+        return pessoas.toArray(pessoasA);
     }
 
 }

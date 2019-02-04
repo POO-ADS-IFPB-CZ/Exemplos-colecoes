@@ -2,7 +2,7 @@ package com.ifpb.colecoes.modelo;
 
 import java.util.Objects;
 
-public class Pessoa {
+public class Pessoa implements Comparable<Pessoa> {
 
     private String cpf;
     private String nome;
@@ -52,14 +52,16 @@ public class Pessoa {
         if (this == o) return true;
         if (!(o instanceof Pessoa)) return false;
         Pessoa pessoa = (Pessoa) o;
-        return getIdade() == pessoa.getIdade() &&
-                Objects.equals(getCpf(), pessoa.getCpf()) &&
-                Objects.equals(getNome(), pessoa.getNome());
+        return Objects.equals(getCpf(), pessoa.getCpf());
     }
 
     @Override
     public int hashCode() {
+        return Objects.hash(getCpf());
+    }
 
-        return Objects.hash(getCpf(), getNome(), getIdade());
+    @Override
+    public int compareTo(Pessoa o) {
+        return idade-o.idade;
     }
 }
